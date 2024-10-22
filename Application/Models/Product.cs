@@ -10,19 +10,23 @@ namespace Server.Application.Models
         public string? ProductDetails { get; set; }
         public string? ImageURL { get; set; }
         public string? Type { get; set; }
-        public int Price { get; set; }
+        public int OriginalPrice { get; set; }
+        public int DiscountedPrice { get; set; }
         public int UnitSold { get; set; }
+        public int Discount { get; set; }
         public bool ShowProduct { get; set; }
 
-        public Product(string ProductName, string ProductDetails, string Type, string ImageURL, int Price)
+        public Product(string ProductName, string ProductDetails, string Type, string ImageURL, int OriginalPrice)
         {
             this.ProductName = ProductName;
             this.ProductDetails = ProductDetails;
             this.Type = Type;
             this.ImageURL = ImageURL;
-            this.Price = Price;
+            this.OriginalPrice = OriginalPrice;
+            DiscountedPrice = 0;
             UnitSold = 0;
             ShowProduct = true;
+            Discount = 0;
         }
     }
 }

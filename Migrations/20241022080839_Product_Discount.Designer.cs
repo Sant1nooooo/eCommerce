@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Server.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using Server.Infrastructure.Context;
 namespace Server.Migrations
 {
     [DbContext(typeof(ECommerceDBContext))]
-    partial class ECommerceDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241022080839_Product_Discount")]
+    partial class Product_Discount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,13 +91,10 @@ namespace Server.Migrations
                     b.Property<int>("Discount")
                         .HasColumnType("int");
 
-                    b.Property<int>("DiscountedPrice")
-                        .HasColumnType("int");
-
                     b.Property<string>("ImageURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OriginalPrice")
+                    b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.Property<string>("ProductDetails")

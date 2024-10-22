@@ -20,5 +20,26 @@ namespace Server.Core
             public bool IsExisting { get; set; }
             public string? Message { get; set; }
         }
+        public class GetProduct_Result
+        {
+            public ProductSubImages? Product { get; set; }
+            public bool IsNotExisting { get; set; }
+            public string? Message { get; set; }
+        }
+        public class DeleteProduct_Result
+        {
+            public bool IsSuccessful { get; set; }
+            public string? Message { get; set; }
+        }
+        public class UpdateProductVisibility_Result
+        {
+            public bool IsSuccessful { get; set; }
+            public string? Message { get; set; }
+        }
+        public class DiscountedProduct_Result
+        {
+            public bool IsSuccessful { get; set; }
+            public string? Message { get; set; }
+        }
     }
 }

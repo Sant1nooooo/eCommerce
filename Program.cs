@@ -8,6 +8,8 @@ using Server.Application.Extensions;
 using Server.Infrastructure.Auth;
 using FluentValidation;
 using System.Text;
+using Server.Application.Utility.Services;
+using Amazon.S3;
 
 namespace Server
 {
@@ -21,8 +23,11 @@ namespace Server
             builder.Services.AddSwaggerGenWithAuth();
 
 
-            //This register the DbContext, MediatR, FluentValidation, JWT, ValidationPipelineBehavior as CUSTOMIZED services to your program. In which they can be access through dependency injection.
-            
+            /*
+                This register the DbContext, MediatR, FluentValidation, JWT, ValidationPipelineBehavior as CUSTOMIZED services to your program.
+                In which they can be access through dependency injection.
+            */
+
             //Database Context
             builder.Services.AddDbContext<ECommerceDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ECommerceConnectionString")));
 
@@ -52,6 +57,12 @@ namespace Server
                         ClockSkew = TimeSpan.Zero
                     };
                 });
+
+            //AWS Service
+            //builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+            //builder.Services.AddAWSService<IAmazonS3>(); //Gagamiting sa loob ng `ImageAWS`.
+            //builder.Services.AddSingleton<ImageAWS>(); //Ito naman yung gagamitin doon sa mediator handler.
+            // Custom class consist of function that is responsible for uploading the image to the bucket in AWS S3 and returning the link. 
 
             //ValidationPipelineBehavior
             //builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>)); //Toplogic
